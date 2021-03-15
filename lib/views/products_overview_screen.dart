@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:shop/providers/cart.dart';
 import 'package:shop/providers/products.dart';
 import 'package:shop/utils/app_routes.dart';
-import 'package:shop/widgets/badge.dart';
-import 'package:shop/widgets/product_grid.dart';
+import 'package:shop/widgets/badge_widget.dart';
+import 'package:shop/widgets/product_grid_widget.dart';
 
 class ProducutOverviewScreen extends StatelessWidget {
   @override
@@ -37,8 +37,8 @@ class ProducutOverviewScreen extends StatelessWidget {
             ],
           ),
           Consumer<Cart>(
-            builder: (ctx, cart, _) => Badge(
-              value: cart.itemCount.toString(),
+            builder: (ctx, cart, _) => BadgeWidget(
+              value: cart.itemsCount.toString(),
               child: IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
@@ -49,7 +49,7 @@ class ProducutOverviewScreen extends StatelessWidget {
           )
         ],
       ),
-      body: ProductGrid(),
+      body: ProductGridWidget(),
     );
   }
 }
