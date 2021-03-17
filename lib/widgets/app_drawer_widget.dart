@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:shop/service_locator.dart';
+import 'package:shop/services/navigation_service.dart';
 import 'package:shop/utils/app_routes.dart';
 
 class AppDrawer extends StatelessWidget {
+  final NavigationService _navigationService = locator<NavigationService>();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: [
-          AppBar(
-              title: Text('Bem vindo, Usuário.')
-          ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.shop),
             title: Text('Loja'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                AppRoutes.HOME,
-              );
+              _navigationService.navigateTo(AppRoutes.HOME);
             },
           ),
           Divider(),
@@ -25,9 +23,7 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.payment),
             title: Text('Pedidos'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                AppRoutes.ORDERS,
-              );
+              _navigationService.navigateTo(AppRoutes.ORDERS);
             },
           ),
         ],

@@ -25,6 +25,8 @@ class Orders with ChangeNotifier {
   int get itemsCount => _items.length;
 
   void addOrder(List<CartItem> products, double total) {
+    if(products.length == 0)
+      return;
     _items.insert(
         0,
         Order(

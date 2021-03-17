@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/layouts/standard_layout.dart';
 import 'package:shop/providers/cart.dart';
+import 'package:shop/providers/layout_provider.dart';
 import 'package:shop/providers/orders.dart';
 import 'package:shop/providers/products.dart';
-import 'package:shop/utils/app_routes.dart';
-import 'package:shop/views/cart_screen.dart';
-import 'package:shop/views/orders_screen.dart';
-import 'package:shop/views/product_detail_screen.dart';
-import 'package:shop/views/products_overview_screen.dart';
+import 'package:shop/service_locator.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  setupLocator();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => Orders(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LayoutProvider(),
         )
       ],
       child: MaterialApp(
@@ -34,12 +38,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        routes: {
-          AppRoutes.HOME: (ctx) => ProducutOverviewScreen(),
-          AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailScreen(),
-          AppRoutes.CART: (ctx) => CartScreen(),
-          AppRoutes.ORDERS: (ctx) => OrdersScreen(),
-        },
+        home: StandardLayout(),
       ),
     );
   }
